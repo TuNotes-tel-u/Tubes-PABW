@@ -79,13 +79,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('readings.index') }}" class="nav-link">
                         <i class="ai-folder"></i>
                         <span>Notes Read</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('study-list.page') }}" class="nav-link">
                         <i class="ai-schedule"></i>
                         <span>Study List</span>
                     </a>

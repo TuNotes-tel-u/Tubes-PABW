@@ -16,3 +16,7 @@ Route::apiResource('readings', ReadingController::class)
 // Study List / mata kuliah (modul Naufal)
 Route::apiResource('study-list', \App\Http\Controllers\Api\CourseController::class)
     ->parameters(['study-list' => 'course']);
+
+// Semester untuk Study List (modul Naufal)
+Route::apiResource('semesters', \App\Http\Controllers\Api\SemesterController::class)
+    ->only(['index', 'store']);
