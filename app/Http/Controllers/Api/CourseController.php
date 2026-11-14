@@ -11,10 +11,14 @@ use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
 {
-    // GET /api/study-list?semester_id=1&q=web
+    // GET /api/study-list?semester_id=1&q=web&per_page=100
     public function index(Request $request): JsonResponse
     {
+        // per_page opsional (default 10, maksimal 100) untuk halaman Study List
+        $perPage = min(max((int) $request->input('per_page', 10), 1), 100);
+
         $courses = Course::query()
+            ->withCount('notes')
             ->when($request->filled('semester_id'), function ($query) use ($request) {
                 $query->where('semester_id', $request->semester_id);
             })
@@ -24,7 +28,7 @@ class CourseController extends Controller
                 $query->where('name', 'LIKE', "%{$kata}%");
             })
             ->orderBy('name')
-            ->paginate(10)
+            ->paginate($perPage)
             ->withQueryString();
 
         return response()->json($courses);
@@ -33,7 +37,7 @@ class CourseController extends Controller
     // POST /api/study-list -> 201 + header Location
     public function store(Request $request): JsonResponse
     {
-        $validated = $request->validate($this->rules());
+        $validated = $request->validate($this->rules(), $this->messages());
 
         $course = Course::create($validated);
 
@@ -50,7 +54,7 @@ class CourseController extends Controller
     // PUT/PATCH /api/study-list/{course} (boleh kirim sebagian field)
     public function update(Request $request, Course $course): JsonResponse
     {
-        $validated = $request->validate($this->rules($course));
+        $validated = $request->validate($this->rules($course), $this->messages());
 
         $course->update($validated);
 
@@ -81,6 +85,16 @@ class CourseController extends Controller
             'name' => [$wajib, 'string', 'max:120'],
             'lecturer_name' => ['nullable', 'string', 'max:120'],
             'sks' => [$wajib, 'integer', 'between:1,6'],
+        ];
+    }
+
+    // Pesan validasi yang tampil di halaman Study List
+    private function messages(): array
+    {
+        return [
+            'code.unique' => 'Kode mata kuliah sudah dipakai.',
+            'sks.between' => 'SKS harus antara 1 sampai 6.',
+            'semester_id.exists' => 'Semester tidak ditemukan.',
         ];
     }
 }

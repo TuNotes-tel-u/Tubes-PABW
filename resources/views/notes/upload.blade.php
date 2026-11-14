@@ -44,11 +44,11 @@
                     <i data-lucide="folder-dot" class="fi fi-rr-robot"></i>
                     <span>Notes AI</span>
                 </a>
-                <a href="#" class="nav-item nav-item">
+                <a href="{{ route('readings.index') }}" class="nav-item nav-item">
                     <i data-lucide="folder-dot" class="ai-folder"></i>
                     <span>Notes Read</span>
                 </a>
-                <a href="#" class="nav-item nav-item">
+                <a href="{{ route('study-list.page') }}" class="nav-item nav-item">
                     <i data-lucide="folder-dot" class="ai-schedule"></i>
                     <span>Study List</span>
                 </a>

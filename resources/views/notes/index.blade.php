@@ -42,10 +42,10 @@
                     <a href="#" class="nav-link"><i data-lucide="folder-dot" class="fi fi-rr-robot"></i> Notes AI</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="folder-dot" class="ai-folder"></i> Notes Read</a>
+                    <a href="{{ route('readings.index') }}" class="nav-link"><i data-lucide="folder-dot" class="ai-folder"></i> Notes Read</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="folder-dot" class="ai-schedule"></i> Study List</a>
+                    <a href="{{ route('study-list.page') }}" class="nav-link"><i data-lucide="folder-dot" class="ai-schedule"></i> Study List</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link"><i data-lucide="folder-dot" class="ai-person"></i>Profil</a>

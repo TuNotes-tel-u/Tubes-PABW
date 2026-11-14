@@ -225,7 +225,7 @@
             <a href="#">Upload Notes</a>
             <a href="#">Notes AI</a>
             <a href="{{ route('readings.index') }}" class="active">Notes Read</a>
-            <a href="#">Study List</a>
+            <a href="{{ route('study-list.page') }}">Study List</a>
             <a href="#">Profil</a>
             <a href="#">Logout</a>
         </nav>

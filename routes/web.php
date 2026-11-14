@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/notes/{note}/edit', [NotePageController::class, 'edit'])->name('notes.edit');
     Route::post('/notes/categories', [NotePageController::class, 'storeCategory'])->name('notes.categories.store');
 
+    // Halaman Study List (modul Naufal), datanya diambil dari /api/study-list
+    Route::view('/study-list', 'study-list.index')->name('study-list.page');
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
